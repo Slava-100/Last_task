@@ -1,0 +1,18 @@
+import requests
+from bs4 import BeautifulSoup as BS
+
+cite = 'https://www.cbr.ru/currency_base/daily/'
+
+info = requests.get(cite)
+
+soup = BS(info.content, 'html.parser')
+
+convert = soup.findAll("tr")
+q = open(r"C:\Users\Дедушка\OneDrive\Рабочий стол\qwerty.txt", "w")
+a=0
+while a<34:
+    a += 1
+    with open(r"C:\Users\Дедушка\OneDrive\Рабочий стол\qwerty.txt", "a") as file:
+        for b in convert[a].text:
+            file.write(b)
+    print(convert[a].text)
